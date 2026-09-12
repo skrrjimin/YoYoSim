@@ -1,0 +1,1588 @@
+/* ==========================================================================
+   STUDIO MIEL | Alberto Mielgo Style Minimalist Dark Portfolio
+   Designed for GitHub Pages Deployment
+   ========================================================================== */
+
+/* 1. 디자인 시스템 토큰 & 리셋
+   ========================================================================== */
+:root {
+  /* 다크/모노톤 컬러 팔레트 */
+  --bg-main: #0a0a0a;
+  --bg-surface: #121212;
+  --bg-card: #161616;
+  --bg-overlay: rgba(10, 10, 10, 0.88);
+  
+  --text-primary: #f5f5f5;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+  --text-inverse: #0a0a0a;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --accent-white: #ffffff;
+
+  /* 타이포그래피 */
+  --font-display: 'Syne', 'Inter', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+
+  /* 여백 & 트랜지션 */
+  --header-height: 72px;
+  --trans-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --trans-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --trans-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* 유틸리티 */
+.hidden {
+  display: none !important;
+}
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+
+/* 2. 상단 헤더 & 네비게이션
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: transform var(--trans-smooth), background-color var(--trans-smooth);
+}
+
+.header-inner {
+  max-width: 1800px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 브랜드 로고 */
+.brand-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  line-height: 1;
+  transition: opacity var(--trans-fast);
+}
+
+.logo-role {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.brand-logo:hover .logo-name {
+  opacity: 0.75;
+}
+
+/* 네비게이션 리스트 */
+.main-nav {
+  display: block;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 28px;
+}
+
+.nav-item-separator {
+  color: var(--border-medium);
+  font-size: 0.8rem;
+  user-select: none;
+}
+
+.nav-btn {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--text-secondary);
+  padding: 8px 0;
+  transition: color var(--trans-fast);
+}
+
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--accent-white);
+  transition: width var(--trans-smooth);
+}
+
+.nav-btn:hover {
+  color: var(--text-primary);
+}
+
+.nav-btn.active {
+  color: var(--accent-white);
+  font-weight: 600;
+}
+
+.nav-btn.active::after {
+  width: 100%;
+}
+
+.nav-btn-about {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* 모바일 햄버거 토글 (데스크톱 숨김) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+}
+
+.menu-line {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--text-primary);
+  transition: transform var(--trans-smooth), opacity var(--trans-smooth);
+}
+
+.menu-toggle.active .top {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.menu-toggle.active .bottom {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+
+/* 3. 메인 콘텐츠 래퍼
+   ========================================================================== */
+.site-main {
+  padding-top: var(--header-height);
+  min-height: calc(100vh - 80px);
+}
+
+
+/* 4. 갤러리 섹션 (Alberto Mielgo Full-Bleed Grid)
+   ========================================================================== */
+.gallery-section {
+  width: 100%;
+  padding: 4px 4px 40px 4px; /* 알베르토 미엘고 특유의 초근접 타이트 여백 */
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px; /* 타일 사이의 얇고 감각적인 절제된 갭 */
+}
+
+/* 갤러리 카드 아이템 */
+.project-card {
+  position: relative;
+  background-color: var(--bg-card);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* 와이드 강조형 카드 (2칸 차지) */
+.project-card.featured-wide {
+  grid-column: span 2;
+  aspect-ratio: 32 / 10;
+}
+
+/* 썸네일 래퍼 & 이미지 */
+.card-media {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform var(--trans-slow), filter var(--trans-smooth);
+  filter: brightness(0.92) contrast(1.05);
+}
+
+/* 호버 오버레이 */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(10, 10, 10, 0.4) 45%,
+    rgba(10, 10, 10, 0.05) 100%
+  );
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 28px;
+  transition: opacity var(--trans-smooth);
+}
+
+.card-meta-top {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.card-info {
+  transform: translateY(12px);
+  transition: transform var(--trans-smooth);
+}
+
+.card-category {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--accent-white);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 호버 시 인터랙션 */
+.project-card:hover .card-img {
+  transform: scale(1.04);
+  filter: brightness(1.05) contrast(1.1);
+}
+
+.project-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.project-card:hover .card-info {
+  transform: translateY(0);
+}
+
+/* 카드 페이드인/아웃 애니메이션 (카테고리 필터링 시) */
+.project-card.fade-in {
+  animation: cardFadeIn 0.45s ease forwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 빈 상태 안내 */
+.empty-state {
+  text-align: center;
+  padding: 120px 20px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+}
+
+
+/* 5. ABOUT 섹션 (Alberto Mielgo Editorial Profile)
+   ========================================================================== */
+.about-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 40px 120px;
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+.about-hero {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 60px;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.about-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+}
+
+.about-lead {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #c5c5c5;
+  max-width: 860px;
+  font-weight: 300;
+  word-break: keep-all;
+}
+
+/* 2컬럼 레이아웃 */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 80px;
+}
+
+.about-block {
+  margin-bottom: 56px;
+}
+
+.block-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* 경력 리스트 */
+.experience-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.experience-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exp-year {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+}
+
+.exp-role {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.exp-client {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* 스킬 & 툴 */
+.skills-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skill-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.skill-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 프로필 이미지 */
+.profile-image-wrap {
+  margin-bottom: 40px;
+}
+
+.profile-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(85%) contrast(1.1);
+  transition: filter var(--trans-smooth);
+}
+
+.profile-img:hover {
+  filter: grayscale(0%) contrast(1.05);
+}
+
+.image-caption {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+/* 컨택트 & SNS */
+.contact-sub {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  word-break: keep-all;
+}
+
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--accent-white);
+  transition: opacity var(--trans-fast);
+}
+
+.contact-email:hover {
+  opacity: 0.7;
+}
+
+.arrow-icon {
+  font-size: 1.1rem;
+  transition: transform var(--trans-fast);
+}
+
+.contact-email:hover .arrow-icon {
+  transform: translate(3px, -3px);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+
+.social-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  transition: color var(--trans-fast);
+}
+
+.social-link:hover {
+  color: var(--text-primary);
+}
+
+
+/* 6. 상세 프로젝트 모달 (Alberto Mielgo Fullscreen Style)
+   ========================================================================== */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--trans-smooth), visibility var(--trans-smooth);
+}
+
+.project-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 백드롭 */
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(5, 5, 5, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  cursor: pointer;
+}
+
+/* 모달 컨테이너 */
+.modal-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-width: 1600px;
+  background-color: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: transform var(--trans-smooth);
+}
+
+.project-modal.active .modal-container {
+  transform: translateY(0);
+}
+
+/* 모달 상단 고정 헤더 */
+.modal-header {
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(12px);
+  z-index: 20;
+}
+
+.modal-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.modal-header-category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.modal-header-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+
+.modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.modal-hint {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.modal-close-btn {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  transition: color var(--trans-fast), transform var(--trans-fast);
+}
+
+.modal-close-btn:hover {
+  color: var(--accent-white);
+  transform: scale(1.05);
+}
+
+/* 모달 스크롤 콘텐츠 바디 */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 60px 48px 100px;
+  scroll-behavior: smooth;
+}
+
+/* 프로젝트 메타데이터 섹션 */
+.modal-meta-section {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+}
+
+.main-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 24px;
+  margin-bottom: 36px;
+}
+
+.modal-detail-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.modal-detail-year {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* 4열 스펙 그리드 */
+.meta-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spec-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.spec-value {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* 시놉시스 및 기획 배경 */
+.modal-synopsis {
+  background: var(--bg-surface);
+  padding: 32px;
+  border-left: 2px solid var(--accent-white);
+}
+
+.synopsis-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.synopsis-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #dddddd;
+  word-break: keep-all;
+  white-space: pre-line;
+}
+
+/* 세로 스크롤 대형 이미지 스트림 */
+.modal-images-stream {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.stream-item {
+  width: 100%;
+  background: var(--bg-card);
+}
+
+.stream-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.stream-caption {
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* 하단 이전/다음 페이지네이션 */
+.modal-pagination {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.pag-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  transition: opacity var(--trans-fast), transform var(--trans-fast);
+}
+
+.pag-btn:hover {
+  opacity: 0.7;
+}
+
+.prev-btn:hover {
+  transform: translateX(-4px);
+}
+
+.next-btn:hover {
+  transform: translateX(4px);
+}
+
+.pag-arrow {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+}
+
+.pag-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.pag-text.align-right {
+  text-align: right;
+}
+
+.pag-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.pag-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+
+/* 7. 푸터
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 32px 0;
+  margin-top: 40px;
+}
+
+.footer-inner {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.footer-note {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+}
+
+
+/* 8. 반응형 미디어 쿼리
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-card.featured-wide {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .about-aside {
+    order: -1;
+  }
+  .profile-image-wrap {
+    max-width: 480px;
+  }
+  .meta-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .header-inner {
+    padding: 0 20px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* 모바일 네비게이션 드롭다운 */
+  .main-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 24px 20px;
+    transform: translateY(-120%);
+    transition: transform var(--trans-smooth);
+  }
+
+  .main-nav.open {
+    transform: translateY(0);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .nav-item-separator {
+    display: none;
+  }
+
+  .nav-btn {
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* 갤러리 단일 열 전환 */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .project-card,
+  .project-card.featured-wide {
+    grid-column: span 1;
+    aspect-ratio: 16 / 10;
+  }
+
+  /* 모바일에서는 오버레이 항상 살짝 노출 또는 탭 시 반응 */
+  .card-overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.9) 0%,
+      rgba(10, 10, 10, 0.2) 60%,
+      transparent 100%
+    );
+  }
+
+  .card-info {
+    transform: translateY(0);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  /* 모달 모바일 스타일 */
+  .modal-header {
+    padding: 0 16px;
+  }
+
+  .modal-hint {
+    display: none;
+  }
+
+  .modal-body {
+    padding: 32px 16px 80px;
+  }
+
+  .main-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .meta-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .modal-synopsis {
+    padding: 20px;
+  }
+
+  .modal-pagination {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .prev-btn, .next-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .about-section {
+    padding: 40px 20px 80px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+
+/* ==========================================================================
+   9. 포스트 추가 도우미 (Admin Helper Modal)
+   ========================================================================== */
+.admin-helper-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+}
+
+.helper-btn {
+  background: rgba(24, 24, 24, 0.85);
+  border: 1px solid var(--border-medium);
+  backdrop-filter: blur(10px);
+  color: var(--text-secondary);
+  padding: 8px 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all var(--trans-fast);
+}
+
+.helper-btn:hover {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.helper-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--trans-fast), visibility var(--trans-fast);
+}
+
+.helper-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.helper-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.helper-modal-content {
+  position: relative;
+  z-index: 10;
+  width: 90%;
+  max-width: 640px;
+  max-height: 88vh;
+  background: #141414;
+  border: 1px solid var(--border-medium);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.helper-modal-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  background: #181818;
+}
+
+.helper-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.helper-close-btn {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-muted);
+  transition: color var(--trans-fast);
+}
+
+.helper-close-btn:hover {
+  color: var(--text-primary);
+}
+
+.helper-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.helper-guide {
+  font-size: 0.82rem;
+  color: #a0a0a0;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  background: #1c1c1c;
+  padding: 12px 16px;
+  border-left: 2px solid var(--accent-white);
+}
+
+.helper-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: #0d0d0d;
+  border: 1px solid #282828;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  transition: border-color var(--trans-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #666666;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.generate-btn {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: opacity var(--trans-fast);
+}
+
+.generate-btn:hover {
+  opacity: 0.85;
+}
+
+.generated-output {
+  margin-top: 20px;
+  background: #0d0d0d;
+  border: 1px solid #282828;
+  padding: 16px;
+}
+
+.output-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4ade80;
+  margin-bottom: 8px;
+}
+
+.generated-output pre {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.75rem;
+  color: #cccccc;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+
+/* ==========================================================================
+   10. 관리자 직접 업로드 CMS 모달 스타일
+   ========================================================================== */
+/* 푸터 자물쇠 버튼 */
+.admin-lock-btn {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  transition: all var(--trans-fast);
+}
+
+.admin-lock-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+/* 관리자 모달 백드롭 */
+.admin-cms-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--trans-smooth), visibility var(--trans-smooth);
+}
+
+.admin-cms-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.admin-cms-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(5, 5, 5, 0.92);
+  backdrop-filter: blur(16px);
+}
+
+/* 다이얼로그 박스 */
+.admin-cms-dialog {
+  position: relative;
+  z-index: 10;
+  width: 95%;
+  max-width: 960px;
+  max-height: 90vh;
+  background-color: #121212;
+  border: 1px solid var(--border-medium);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* 헤더 */
+.admin-cms-header {
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #181818;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.admin-cms-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-badge {
+  background: #ffffff;
+  color: #000000;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.admin-cms-heading {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.admin-cms-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-tab-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all var(--trans-fast);
+}
+
+.admin-tab-btn.active {
+  color: var(--text-primary);
+  background: #242424;
+  border-color: var(--border-medium);
+}
+
+.admin-close-x {
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  margin-left: 12px;
+  transition: color var(--trans-fast);
+}
+
+.admin-close-x:hover {
+  color: var(--text-primary);
+}
+
+/* 바디 */
+.admin-cms-body {
+  padding: 28px 32px;
+  overflow-y: auto;
+}
+
+/* 폼 그리드 (좌측: 텍스트 / 우측: 사진) */
+.cms-form-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+}
+
+.cms-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 파일 업로드 컴포넌트 */
+.file-upload-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upload-label span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.upload-label small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.file-input {
+  background: #181818;
+  border: 1px dashed var(--border-medium);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.preview-box {
+  min-height: 120px;
+  background: #0a0a0a;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery-preview-box {
+  min-height: 90px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 6px;
+}
+
+.preview-placeholder {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* 발행 상태 & 버튼 */
+.cms-status {
+  margin-top: 20px;
+  background: #181818;
+  border: 1px solid var(--border-medium);
+  padding: 14px 20px;
+  border-radius: 4px;
+}
+
+.status-msg {
+  font-size: 0.85rem;
+  color: #e5e5e5;
+  line-height: 1.5;
+}
+
+.cms-actions {
+  margin-top: 24px;
+}
+
+.publish-btn {
+  width: 100%;
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: opacity var(--trans-fast), transform var(--trans-fast);
+}
+
+.publish-btn:hover {
+  opacity: 0.88;
+}
+
+.publish-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 설정 탭 가이드 */
+.settings-guide {
+  background: #181818;
+  border-left: 3px solid #ffffff;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.settings-guide h3 {
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.settings-guide p {
+  font-size: 0.82rem;
+  color: #a8a8a8;
+  line-height: 1.6;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.token-guide {
+  display: block;
+  font-size: 0.72rem;
+  color: #888888;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.token-guide code {
+  color: #4ade80;
+  background: #1f1f1f;
+  padding: 2px 4px;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.save-settings-btn {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.logout-btn {
+  background: #2a2a2a;
+  color: #f87171;
+  font-size: 0.82rem;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .cms-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
