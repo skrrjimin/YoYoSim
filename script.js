@@ -67,15 +67,6 @@ const modalNextBtn = document.getElementById("modal-next-btn");
 const pagPrevTitle = document.getElementById("pag-prev-title");
 const pagNextTitle = document.getElementById("pag-next-title");
 
-// 헬퍼 모달 요소
-const helperModal = document.getElementById("helper-modal");
-const helperBackdrop = document.getElementById("helper-backdrop");
-const openHelperBtn = document.getElementById("open-helper-btn");
-const closeHelperBtn = document.getElementById("close-helper-btn");
-const postGeneratorForm = document.getElementById("post-generator-form");
-const generatedOutputWrap = document.getElementById("generated-output-wrap");
-const generatedCodeBox = document.getElementById("generated-code-box");
-
 
 // ==========================================================================
 // 2. 상태 관리 변수
@@ -390,86 +381,7 @@ function navigateModal(direction) {
 
 
 // ==========================================================================
-// 7. 🛠️ 포스트 생성 헬퍼 (새 글 추가 도우미 모달)
-// ==========================================================================
-function initHelper() {
-  if (!openHelperBtn) return;
-
-  openHelperBtn.addEventListener("click", () => {
-    helperModal.classList.add("active");
-    helperModal.setAttribute("aria-hidden", "false");
-  });
-
-  const closeHelper = () => {
-    helperModal.classList.remove("active");
-    helperModal.setAttribute("aria-hidden", "true");
-  };
-
-  closeHelperBtn.addEventListener("click", closeHelper);
-  helperBackdrop.addEventListener("click", closeHelper);
-
-  // 폼 제출 시 JSON 코드 블록 생성 및 자동 클립보드 복사
-  postGeneratorForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const title = document.getElementById("form-title").value.trim();
-    const id = document.getElementById("form-id").value.trim() || title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    const category = document.getElementById("form-category").value;
-    const year = document.getElementById("form-year").value.trim() || new Date().getFullYear().toString();
-    const featuredWide = document.getElementById("form-wide").checked;
-    const thumbnail = document.getElementById("form-thumbnail").value.trim();
-    const role = document.getElementById("form-role").value.trim() || "All Artwork (100%)";
-    const tools = document.getElementById("form-tools").value.trim() || "Clip Studio Paint, Photoshop";
-    const client = document.getElementById("form-client").value.trim() || "Original Work";
-    const synopsis = document.getElementById("form-synopsis").value.trim();
-
-    // 상세 이미지 목록 파싱
-    const rawImages = document.getElementById("form-images").value.trim().split("\n");
-    const images = rawImages
-      .map((url, i) => url.trim())
-      .filter((url) => url.length > 0)
-      .map((url, i) => ({
-        url: url,
-        caption: `0${i + 1}. SCENE CUT & DETAIL`
-      }));
-
-    if (images.length === 0 && thumbnail) {
-      images.push({ url: thumbnail, caption: "01. KEYFRAME ARTWORK" });
-    }
-
-    const newProjectObj = {
-      id,
-      title,
-      category,
-      categoryLabel: category.toUpperCase(),
-      year,
-      featuredWide,
-      thumbnail,
-      role,
-      tools,
-      client,
-      synopsis,
-      images
-    };
-
-    // 들여쓰기 4칸 포맷팅
-    const codeString = "    " + JSON.stringify(newProjectObj, null, 6).replace(/\n/g, "\n    ") + ",";
-
-    // 화면 노출 및 클립보드 복사
-    generatedCodeBox.textContent = codeString;
-    generatedOutputWrap.classList.remove("hidden");
-
-    navigator.clipboard.writeText(codeString).then(() => {
-      alert("✅ 코드가 클립보드에 복사되었습니다!\n\nconfig.js 파일의 projects: [ ... ] 맨 위에 붙여넣고 저장하세요.");
-    }).catch(() => {
-      alert("코드가 생성되었습니다. 아래 박스 안의 내용을 복사하여 config.js에 붙여넣으세요.");
-    });
-  });
-}
-
-
-// ==========================================================================
-// 8. 이벤트 리스너 등록 & 초기화
+// 7. 이벤트 리스너 등록 & 초기화
 // ==========================================================================
 function initEvents() {
   // 네비게이션 버튼 동적 위임 클릭 이벤트
@@ -502,10 +414,12 @@ function initEvents() {
       if (e.key === "Escape") closeModal();
       else if (e.key === "ArrowLeft") navigateModal("prev");
       else if (e.key === "ArrowRight") navigateModal("next");
-    } else if (helperModal.classList.contains("active")) {
-      if (e.key === "Escape") {
-        helperModal.classList.remove("active");
-      }
+    }
+
+    // 관리자 비밀 단축키: Ctrl + Shift + A 누르면 admin.html로 이동
+    if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
+      e.preventDefault();
+      window.location.href = "admin.html";
     }
   });
 
@@ -523,6 +437,11 @@ function handleInitialHash() {
 
   if (hash === "about") {
     switchCategory("about");
+    return;
+  }
+
+  if (hash === "admin") {
+    window.location.href = "admin.html";
     return;
   }
 
@@ -545,7 +464,6 @@ function handleInitialHash() {
 function init() {
   renderSiteFromConfig();
   initEvents();
-  initHelper();
   handleInitialHash();
 }
 
