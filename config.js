@@ -19,16 +19,16 @@ const SITE_CONFIG = {
   // --------------------------------------------------------------------------
   brand: {
     // 브라우저 탭에 뜨는 제목
-    browserTitle: "STUDIO MIEL | Visual Artist & Storyteller",
+    browserTitle: "Jimin | Visual Artist & Storyteller",
     
     // 사이트 좌측 상단 로고 이름 (예: 본인 닉네임, 스튜디오명)
-    siteName: "STUDIO MIEL",
+    siteName: "Jimin",
     
     // 로고 아래 서브 텍스트 (직무나 역할)
-    siteRole: "ART DIRECTOR / VISUAL ARTIST",
+    siteRole: "VISUAL ARTIST",
     
     // 사이트 검색 엔진(SEO) 설명 문구
-    metaDescription: "다크 미니멀 비주얼 아트 & 웹툰 포트폴리오. 콘셉트 아트, 일러스트레이션, 오리지널 캐릭터 기획.",
+    metaDescription: "화이트 미니멀 비주얼 아트 & 웹툰 포트폴리오. 콘셉트 아트, 일러스트레이션, 오리지널 캐릭터 기획.",
   },
 
   // --------------------------------------------------------------------------
@@ -58,12 +58,12 @@ const SITE_CONFIG = {
 
     // 프로필 사진 (웹 링크 URL 또는 "images/my-profile.jpg" 로컬 경로)
     profileImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
-    profileCaption: "STUDIO MIEL — SEOUL, KOREA",
+    profileCaption: "Jimin — SEOUL, KOREA",
 
     // 경력 및 클라이언트 이력 (원하는 만큼 추가/삭제 가능)
     experiences: [
       {
-        year: "2024 — PRESENT",
+        year: "2026 — PRESENT",
         role: "Lead Webtoon Art Director & Concept Artist",
         client: "Studio Neon Horizon / 네이버웹툰 오리지널 기획 연재 준비 중",
       },
@@ -88,7 +88,7 @@ const SITE_CONFIG = {
     skills: [
       {
         category: "Artwork & Concept",
-        desc: "Cinematic Keyframe, Character Design, Webtoon Color Scripting, Mood Lighting, Storyboarding",
+        desc: "Cinematic Keyframe, Character Design, Webtoon,Storyboarding",
       },
       {
         category: "Software & Tools",
@@ -96,7 +96,7 @@ const SITE_CONFIG = {
       },
       {
         category: "Languages",
-        desc: "Korean (Native), English (Professional Working)",
+        desc: "Korean (Native), English (Professional Working), Japanese (Basic Conversational)",
       },
     ],
 
@@ -118,7 +118,7 @@ const SITE_CONFIG = {
   // --------------------------------------------------------------------------
   footer: {
     year: 2025,
-    copyrightText: "STUDIO MIEL. ALL RIGHTS RESERVED.",
+    copyrightText: "Jimin. ALL RIGHTS RESERVED.",
     note: "DESIGN INSPIRED BY ALBERTO MIELGO. BUILT FOR GITHUB PAGES.",
   },
 
