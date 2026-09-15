@@ -128,6 +128,197 @@ const SITE_CONFIG = {
   // --------------------------------------------------------------------------
   projects: [
     {
+          "id": "work-1789435741761",
+          "title": "놀러와요 휴양의섬!",
+          "category": "webtoon",
+          "categoryLabel": "WEBTOON",
+          "year": "2026",
+          "featuredWide": true,
+          "thumbnail": "images/1789435741761____ai.png",
+          "role": "ALL",
+          "tools": "Clip Studio Paint",
+          "client": "오리지널 졸업작품",
+          "synopsis": "#일상개그 #막장서스팬스 #어반판타지\n\n마약범을 대상으로 사기를 치는 사기꾼 심도희. 의문의 사고로 불시착한 곳은 핸드폰도 병원도 경찰도 없는 그 무엇도 없는 기묘한 휴양 섬. 다섯 살 보리, 거구의 황중민, 바람둥이 수의사 이동유와 얽혀들며 섬을 노리는 세력과 맞선다.",
+          "images": [
+                {
+                      "url": "images/1789435744775_1__new_001.jpg",
+                      "caption": "01. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435747060_1__new_001.png",
+                      "caption": "02. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435752818_1__new_002.jpg",
+                      "caption": "03. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435755754_1__new_002.png",
+                      "caption": "04. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435759338_1__new_003.jpg",
+                      "caption": "05. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435761629_1__new_003.png",
+                      "caption": "06. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435768620_1__new_004.jpg",
+                      "caption": "07. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435770310_1__new_004.png",
+                      "caption": "08. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435774118_1__new_005.jpg",
+                      "caption": "09. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435776583_1__new_005.png",
+                      "caption": "010. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435780837_1__new_006.jpg",
+                      "caption": "011. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435783503_1__new_006.png",
+                      "caption": "012. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435785910_1__new_007.jpg",
+                      "caption": "013. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435788284_1__new_007.png",
+                      "caption": "014. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435792664_1__new_008.jpg",
+                      "caption": "015. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435794887_1__new_008.png",
+                      "caption": "016. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435799944_1__new_009.jpg",
+                      "caption": "017. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435802495_1__new_009.png",
+                      "caption": "018. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435805159_1__new_010.jpg",
+                      "caption": "019. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435807763_1__new_010.png",
+                      "caption": "020. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435811256_1__new_011.jpg",
+                      "caption": "021. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435813396_1__new_011.png",
+                      "caption": "022. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435817834_1__new_012.jpg",
+                      "caption": "023. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435819265_1__new_012.png",
+                      "caption": "024. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435823485_1__new_013.jpg",
+                      "caption": "025. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435826059_1__new_014.jpg",
+                      "caption": "026. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435828456_1__new_014.png",
+                      "caption": "027. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435833141_1__new_015.jpg",
+                      "caption": "028. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435834872_1__new_015.png",
+                      "caption": "029. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435840685_1__new_016.jpg",
+                      "caption": "030. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435842063_1__new_016.png",
+                      "caption": "031. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435847350_1__new_017.jpg",
+                      "caption": "032. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435848911_1__new_017.png",
+                      "caption": "033. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435852385_1__new_018.jpg",
+                      "caption": "034. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435853879_1__new_018.png",
+                      "caption": "035. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435859154_1__new_019.jpg",
+                      "caption": "036. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435861551_1__new_019.png",
+                      "caption": "037. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435864536_1__new_020.jpg",
+                      "caption": "038. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435867155_1__new_020.png",
+                      "caption": "039. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435871015_1__new_021.jpg",
+                      "caption": "040. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435873415_1__new_021.png",
+                      "caption": "041. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435875578_1__new_022.jpg",
+                      "caption": "042. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435876901_1__new_023.jpg",
+                      "caption": "043. SCENE DETAIL CUT"
+                },
+                {
+                      "url": "images/1789435878271_1__new_024.jpg",
+                      "caption": "044. SCENE DETAIL CUT"
+                }
+          ]
+    },
+    {
       id: "neon-blade",                           // 고유 ID (영어, 숫자, 하이픈)
       title: "NEON BLADE : CHRONICLES",           // 작품 제목
       category: "webtoon",                       // 위 categories의 key 중 하나 ('webtoon', 'illustration', 'works', 'oc')
